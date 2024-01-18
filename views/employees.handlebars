@@ -1,0 +1,53 @@
+<h1>Company Database</h1>
+<h2>Current Employees:</h2>
+<p>{{filterStatement}}</p> <!-- Dynamically show the active filter -->
+
+<!-- Table for Employees -->
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Salary</th>
+            <th>Dno</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each employees}}
+        <tr>
+            <td>{{this.Fname}}</td>
+            <td>{{this.Lname}}</td>
+            <td>{{this.Salary}}</td>
+            <td>{{this.Dno}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<!-- Filter by Project -->
+<div>
+    <label for="projectFilter">Filter by project:</label>
+    <select id="projectFilter" name="projectFilter">
+        <!-- Project options will go here -->
+        {{#each projects}}
+        <option value="{{this.Pnumber}}">{{this.Pname}}</option>
+        {{/each}}
+    </select>
+    <button onclick="filterEmployeesByProject()">Filter</button>
+</div>
+
+<!-- Search by First Name -->
+<div>
+    <label for="firstNameSearch">Search for First Name:</label>
+    <input type="text" id="firstNameSearch" name="firstNameSearch">
+    <button onclick="searchEmployeesByFirstName()">Search</button>
+</div>
+
+<!-- Clear Filters Button -->
+<button onclick="clearFilters()">Clear Filters</button>
+
+<div>
+    <p>
+        <i>by Wolfle</i>
+    </p>
+</div>
