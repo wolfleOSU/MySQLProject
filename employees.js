@@ -1,3 +1,4 @@
+// Acquire needed employee info from database
 module.exports = function() {
     var express = require('express');
     var router = express.Router();
@@ -14,6 +15,7 @@ module.exports = function() {
         });
     }
 
+    // Get all projects from database to populate dropdown menu
     function getProjects(res, mysql, context, complete) {
         mysql.pool.query("SELECT Pnumber, Pname, Plocation, Dnum FROM PROJECT", function(error, results, fields) {
             if (error) {
@@ -26,6 +28,8 @@ module.exports = function() {
         });
     }
 
+
+    // function to select only employees who work on a certain project
     function getEmployeesByProject(req, res, mysql, context, complete) {
         var query = "SELECT E.Ssn, E.Fname, E.Lname, E.Salary, E.Dno FROM EMPLOYEE E INNER JOIN WORKS_ON W ON E.Ssn = W.Essn WHERE W.Pno = ?";
         var inserts = [req.params.projectId];
@@ -40,6 +44,8 @@ module.exports = function() {
         });
     }
 
+
+    // function to fetch only employees whose name contains a given string
     function searchEmployeesByName(req, res, mysql, context, complete) {
         var query = "SELECT Ssn, Fname, Lname, Salary, Dno FROM EMPLOYEE WHERE Fname LIKE " + mysql.pool.escape(req.params.name + '%');
         mysql.pool.query(query, function(error, results, fields) {
