@@ -1,4 +1,4 @@
-# Leo Wolf
+# Leo Wolf SQL Project
 
 This is a demo project for CS340.
 This project uses MySQL and js to access an employee database
